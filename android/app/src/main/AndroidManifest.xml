@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="skills_53_regional_flutter"
+        android:label="技能競賽"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

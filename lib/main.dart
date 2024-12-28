@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:skills_53_regional_flutter/components/drawer.dart';
-import 'package:skills_53_regional_flutter/screens/home.dart';
-import 'package:skills_53_regional_flutter/screens/news.dart';
-import 'package:skills_53_regional_flutter/screens/splash.dart';
+
+import 'components/drawer.dart';
+import 'screens/home.dart';
+import 'screens/news.dart';
+import 'screens/splash.dart';
 
 void main() {
   runApp(const MyApp());

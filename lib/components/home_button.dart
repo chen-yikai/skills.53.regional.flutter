@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:skills_53_regional_flutter/components/color.dart';
+
+import 'color.dart';
 
 class HomeButton extends StatelessWidget {
   final String text;

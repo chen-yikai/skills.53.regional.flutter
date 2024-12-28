@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:skills_53_regional_flutter/components/drawer.dart';
+
+import '../components/drawer.dart';
 import '../components/home_button.dart';
 
 class HomeScreen extends StatefulWidget {
