@@ -5,19 +5,19 @@ import 'color.dart';
 class HomeButton extends StatelessWidget {
   final String text;
   final String icon;
-  final VoidCallback onPressed;
+  final String target;
 
   const HomeButton(
       {super.key,
       required this.text,
       required this.icon,
-      required this.onPressed});
+      required this.target});
 
   @override
   Widget build(BuildContext context) {
     return Container(
         decoration: BoxDecoration(
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               color: Colors.black26,
               offset: Offset(0, 4),
@@ -34,7 +34,9 @@ class HomeButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
             ),
           ),
-          onPressed: onPressed,
+          onPressed: () {
+            Navigator.pushNamed(context, target);
+          },
           child: Stack(
             children: [
               Align(

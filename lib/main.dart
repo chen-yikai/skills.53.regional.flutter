@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import 'components/drawer.dart';
 import 'screens/home.dart';
 import 'screens/news.dart';
@@ -23,13 +22,19 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/splash',
+      initialRoute: 'splash',
       routes: {
-        '/splash': (context) => const SplashScreen(),
-        '/': (context) => const HomeScreen(),
-        '/news': (context) => const NewsScreen(),
+        'splash': (context) => const SplashScreen(),
+        'home': (context) => const HomeScreen(),
+        'news': (context) => const NewsScreen(),
         'drawer': (context) => const AppDrawer(),
       },
     );
   }
+}
+
+enum Nav {
+  home,
+  news,
+  splash,
 }

@@ -24,7 +24,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: const EdgeInsets.all(10),
                 child: IconButton(
                     onPressed: () {
-                      print('Drawer');
                       _scaffoldKey.currentState?.openDrawer();
                     },
                     icon: Image.asset('assets/icons/menu.png', height: 40)))),
@@ -36,10 +35,18 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               Image.asset('assets/home_logo.png', height: 100),
               const SizedBox(height: 100),
-              Column(children: [
-                HomeButton(text: '最新消息', icon: 'home.png', onPressed: () {}),
-                HomeButton(text: '關於競賽', icon: 'people.png', onPressed: () {}),
-                HomeButton(text: '職類介紹', icon: 'cup.png', onPressed: () {}),
+              const Column(children: [
+                HomeButton(text: '最新消息', icon: 'home.png', target: 'news'),
+                HomeButton(
+                  text: '關於競賽',
+                  icon: 'people.png',
+                  target: "about",
+                ),
+                HomeButton(
+                  text: '職類介紹',
+                  icon: 'cup.png',
+                  target: "info",
+                ),
               ]),
             ],
           ),

@@ -23,11 +23,11 @@ class _AppDrawerState extends State<AppDrawer> {
           ),
           const SizedBox(height: 50),
           const ListButton(
-              title: "最新消息", icon: "home", current: false, target: '/news'),
+              title: "最新消息", icon: "home", current: false, target: 'news'),
           const ListButton(
-              title: "關於競賽", icon: "people", current: false, target: '/about'),
+              title: "關於競賽", icon: "people", current: false, target: 'about'),
           const ListButton(
-              title: "職類介紹", icon: "cup", current: false, target: '/job'),
+              title: "職類介紹", icon: "cup", current: false, target: 'job'),
         ],
       ),
     );

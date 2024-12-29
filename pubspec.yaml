@@ -10,7 +10,8 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.8
   csv: ^5.0.0
-  enough_convert: ^1.6.0
+  go_router: ^14.6.2
+  gap: ^3.0.1
 
 dev_dependencies:
   flutter_test:
@@ -31,16 +32,6 @@ flutter:
         - asset: assets/fonts/monospace.ttf
 
   assets:
-    - assets/data/news.csv
-    - assets/favicon.png
-    - assets/home_logo.png
-    - assets/nav_logo.png
-    - assets/bg.png
-    - assets/splash_screen.png
-    - assets/icons/blue_arrow_left.png
-    - assets/icons/white_arrow_left.png
-    - assets/icons/cancel.png
-    - assets/icons/cup.png
-    - assets/icons/home.png
-    - assets/icons/people.png
-    - assets/icons/menu.png
+    - assets/data/
+    - assets/
+    - assets/icons/
