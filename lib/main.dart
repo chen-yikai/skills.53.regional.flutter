@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:skills_53_regional_flutter/screens/about.dart';
 import 'components/drawer.dart';
 import 'screens/home.dart';
 import 'screens/news.dart';
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
         'splash': (context) => const SplashScreen(),
         'home': (context) => const HomeScreen(),
         'news': (context) => const NewsScreen(),
+        'about': (context) => const AboutScreen(),
         'drawer': (context) => const AppDrawer(),
       },
     );
