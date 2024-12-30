@@ -6,7 +6,10 @@ import 'package:gap/gap.dart';
 import 'package:skills_53_regional_flutter/components/color.dart';
 
 class NewsScreen extends StatefulWidget {
-  const NewsScreen({super.key});
+  final GlobalKey<ScaffoldState> scaffoldKey;
+
+  const NewsScreen({super.key, required this.scaffoldKey});
+
   @override
   State<NewsScreen> createState() => _NewsScreenState();
 }
@@ -51,7 +54,7 @@ class _NewsScreenState extends State<NewsScreen> {
                         alignment: Alignment.topLeft,
                         child: IconButton(
                             onPressed: () {
-                              Navigator.pop(context);
+                              widget.scaffoldKey.currentState?.openDrawer();
                             },
                             icon: Image.asset(
                                 "assets/icons/white_arrow_left.png",

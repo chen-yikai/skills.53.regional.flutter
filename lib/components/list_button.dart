@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:skills_53_regional_flutter/components/color.dart';
 
 class ListButton extends StatelessWidget {
@@ -6,12 +7,15 @@ class ListButton extends StatelessWidget {
   final String icon;
   final String target;
   final bool current;
+  final GlobalKey<ScaffoldState> scaffoldKey;
+
   const ListButton(
       {super.key,
       required this.title,
       required this.icon,
       required this.current,
-      required this.target});
+      required this.target,
+      required this.scaffoldKey});
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +33,12 @@ class ListButton extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 50),
                     child: RichText(
                         text: TextSpan(
-                            style: const TextStyle(
-                                fontWeight: FontWeight.bold,
+                            style: TextStyle(
+                                fontWeight:
+                                    GoRouterState.of(context).name.toString() ==
+                                            target
+                                        ? FontWeight.bold
+                                        : FontWeight.normal,
                                 letterSpacing: 5,
                                 fontSize: 20),
                             children: [
@@ -46,8 +54,11 @@ class ListButton extends StatelessWidget {
                               ))
                         ]))))
           ])),
-      onTap: () {
-        Navigator.pushNamed(context, target);
+      onTap: () async {
+        context.goNamed(target);
+        Future.delayed(const Duration(milliseconds: 500), () {
+          scaffoldKey.currentState?.closeDrawer();
+        });
       },
     );
   }

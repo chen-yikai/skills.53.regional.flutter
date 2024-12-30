@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import 'color.dart';
 
@@ -35,7 +36,7 @@ class HomeButton extends StatelessWidget {
             ),
           ),
           onPressed: () {
-            Navigator.pushNamed(context, target);
+            context.goNamed(target);
           },
           child: Stack(
             children: [
