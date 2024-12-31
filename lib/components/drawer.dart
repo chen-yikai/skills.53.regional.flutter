@@ -52,7 +52,7 @@ class _AppDrawerState extends State<AppDrawer> {
                 title: "職類介紹",
                 icon: "cup",
                 current: false,
-                target: 'job',
+                target: 'category',
                 scaffoldKey: widget.scaffoldKey),
           ],
         ),

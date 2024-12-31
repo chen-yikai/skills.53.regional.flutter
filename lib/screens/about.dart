@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:csv/csv.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -5,65 +6,43 @@ import 'package:skills_53_regional_flutter/components/color.dart';
 
 class AboutScreen extends StatefulWidget {
   final GlobalKey<ScaffoldState> scaffoldKey;
-
   const AboutScreen({super.key, required this.scaffoldKey});
-
   @override
   State<AboutScreen> createState() => _AboutScreenState();
 }
 
 class _AboutScreenState extends State<AboutScreen>
     with SingleTickerProviderStateMixin {
-  late TabController _tabController;
+  List<List<dynamic>> listData = [];
+  List<List<String>> imageData = [];
 
-  List<Tab> tabs = [];
-
-  List<Widget> tabsContent = [
-    Center(
-      child: Text("data"),
-    ),
-    Center(
-      child: Text("data"),
-    ),
-    Center(
-      child: Text("data"),
-    ),
-    Center(
-      child: Text("data"),
-    ),
-    Center(
-      child: Text("data"),
-    ),
-  ];
-
-  @override
-  void initState() {
-    super.initState();
-    loadcsv();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _tabController.dispose();
+  Future<void> fileGetter(index) async {
+    final String manifestContent =
+        await rootBundle.loadString('AssetManifest.json');
+    final Map<String, dynamic> manifestMap = json.decode(manifestContent);
+    String directoryPath = 'assets/data/about/$index';
+    List<String> tempData = [];
+    manifestMap.forEach((key, item) {
+      if (key.startsWith(directoryPath)) {
+        tempData.add(key);
+      }
+    });
+    imageData.add(tempData);
   }
 
   Future<void> loadcsv() async {
     final csvData = await rootBundle.loadString('assets/data/about/about.csv');
-    List<List<dynamic>> listData = const CsvToListConverter().convert(csvData);
-    listData.forEach((item) {
-      print(item[0].toString());
-      tabs.add(Tab(
-        child: Text(item[0]),
-      ));
-      // tabsContent.add(Expanded(
-      //     child: SingleChildScrollView(
-      //   child: Text(item[1].toString()),
-      // )));
-      setState(() {
-        _tabController = TabController(length: 5, vsync: this);
-      });
+    listData = const CsvToListConverter().convert(csvData);
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    List.generate(5, (index) {
+      fileGetter(index + 1);
     });
+    loadcsv();
   }
 
   @override
@@ -106,20 +85,78 @@ class _AboutScreenState extends State<AboutScreen>
             ],
           ),
         )),
-        body: Stack(
-          children: [
-            _tabController.length > 0
-                ? TabBarView(controller: _tabController, children: tabsContent)
-                : Center(child: CircularProgressIndicator()),
-            Container(
-                color: blue,
-                child: TabBar(
-                  labelStyle: TextStyle(color: Colors.white),
-                  tabs: tabs,
-                  controller: _tabController,
-                ))
-          ],
-        ));
+        body: DefaultTabController(
+            length: listData.length,
+            child: Stack(children: [
+              Column(
+                children: [
+                  Material(
+                      color: blue,
+                      child: TabBar(
+                        labelPadding: const EdgeInsets.only(left: 10),
+                        labelStyle: const TextStyle(
+                            fontSize: 15, fontWeight: FontWeight.normal),
+                        labelColor: Colors.white,
+                        unselectedLabelColor: Colors.grey,
+                        padding: const EdgeInsets.only(bottom: 10),
+                        tabAlignment: TabAlignment.start,
+                        isScrollable: true,
+                        tabs: listData.map((entry) {
+                          return Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10),
+                              child: Tab(text: entry[0].toString()));
+                        }).toList(),
+                        indicator: const UnderlineTabIndicator(
+                            borderRadius: BorderRadius.zero),
+                      )),
+                  Expanded(
+                    child: Container(
+                        decoration: const BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage('assets/bg.png'),
+                                fit: BoxFit.fill)),
+                        child: TabBarView(
+                          children: listData.asMap().entries.map((entry) {
+                            final index = entry.key;
+                            final item = entry.value;
+                            return SingleChildScrollView(
+                                child: SafeArea(
+                                    child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 20, vertical: 15),
+                                        child: Column(
+                                          children: [
+                                            Padding(
+                                                padding: const EdgeInsets.only(
+                                                    bottom: 20),
+                                                child: SingleChildScrollView(
+                                                    scrollDirection:
+                                                        Axis.horizontal,
+                                                    child: Row(
+                                                      children: imageData[index]
+                                                          .map((image) {
+                                                        return Container(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .only(
+                                                                    right: 10),
+                                                            child: Image.asset(
+                                                                image,
+                                                                height: 200));
+                                                      }).toList(),
+                                                    ))),
+                                            Text(item[1].toString(),
+                                                style: const TextStyle(
+                                                    color: gray))
+                                          ],
+                                        ))));
+                          }).toList(),
+                        )),
+                  )
+                ],
+              )
+            ])));
   }
 
   final topBarTextStyle =

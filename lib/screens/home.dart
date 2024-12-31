@@ -20,9 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Padding(
               padding: const EdgeInsets.all(10),
               child: IconButton(
-                  onPressed: () {
-                    widget.scaffoldKey.currentState?.openDrawer();
-                  },
+                  onPressed: () {},
                   icon: Image.asset('assets/icons/menu.png', height: 40)))),
       Padding(
         padding: const EdgeInsets.all(60),
@@ -42,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
               HomeButton(
                 text: '職類介紹',
                 icon: 'cup.png',
-                target: "info",
+                target: "category",
               ),
             ]),
           ],
