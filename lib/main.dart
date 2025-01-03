@@ -15,6 +15,8 @@ void main() {
 class MyApp extends StatelessWidget {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
+  MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     final router = GoRouter(routes: [
@@ -27,7 +29,7 @@ class MyApp extends StatelessWidget {
       GoRoute(
           path: '/',
           name: "splash",
-          builder: (context, state) => SplashScreen()),
+          builder: (context, state) => const SplashScreen()),
       GoRoute(
           path: '/news',
           name: "news",

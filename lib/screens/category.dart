@@ -17,7 +17,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
         Container(
           color: blue,
           height: 150,
-        )
+        ),
       ],
     );
   }
