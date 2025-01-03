@@ -33,6 +33,7 @@ flutter:
 
   assets:
     - assets/data/
+    - assets/data/category/
     - assets/data/about/1/
     - assets/data/about/2/
     - assets/data/about/3/

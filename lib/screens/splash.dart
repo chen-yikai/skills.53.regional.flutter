@@ -19,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future<void> _navtoHome() async {
     await Future.delayed(const Duration(seconds: 0));
-    if (mounted) context.go('/home');
+    if (mounted) context.go('/category');
   }
 
   @override

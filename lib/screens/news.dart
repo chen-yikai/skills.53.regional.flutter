@@ -217,7 +217,4 @@ class _NewsScreenState extends State<NewsScreen> {
       ),
     );
   }
-
-  final topBarTextStyle =
-      const TextStyle(fontSize: 25, letterSpacing: 5, color: Colors.white);
 }

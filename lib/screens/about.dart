@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:csv/csv.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -6,7 +7,9 @@ import 'package:skills_53_regional_flutter/components/color.dart';
 
 class AboutScreen extends StatefulWidget {
   final GlobalKey<ScaffoldState> scaffoldKey;
+
   const AboutScreen({super.key, required this.scaffoldKey});
+
   @override
   State<AboutScreen> createState() => _AboutScreenState();
 }
@@ -54,34 +57,35 @@ class _AboutScreenState extends State<AboutScreen>
           color: blue,
           child: Stack(
             children: [
-              Padding(
-                  padding: const EdgeInsets.only(left: 10, right: 10, top: 50),
-                  child: Column(children: [
-                    Stack(children: [
-                      Align(
-                        alignment: Alignment.topLeft,
-                        child: IconButton(
-                            onPressed: () {
-                              widget.scaffoldKey.currentState?.openDrawer();
-                            },
-                            icon: Image.asset(
-                                "assets/icons/white_arrow_left.png",
-                                height: 15)),
-                      ),
-                      Align(
-                          alignment: Alignment.topCenter,
-                          child: Text.rich(TextSpan(children: [
-                            TextSpan(
-                                text: "關於",
-                                style: topBarTextStyle.copyWith(
-                                    fontWeight: FontWeight.normal)),
-                            TextSpan(
-                                text: "競賽",
-                                style: topBarTextStyle.copyWith(
-                                    fontWeight: FontWeight.bold))
-                          ]))),
-                    ]),
-                  ])),
+              Column(children: [
+                SafeArea(
+                    child: Padding(
+                        padding: const EdgeInsets.only(left: 15, right: 15),
+                        child: Stack(children: [
+                          Align(
+                            alignment: Alignment.topLeft,
+                            child: IconButton(
+                                onPressed: () {
+                                  widget.scaffoldKey.currentState?.openDrawer();
+                                },
+                                icon: Image.asset(
+                                    "assets/icons/white_arrow_left.png",
+                                    height: 15)),
+                          ),
+                          Align(
+                              alignment: Alignment.topCenter,
+                              child: Text.rich(TextSpan(children: [
+                                TextSpan(
+                                    text: "關於",
+                                    style: topBarTextStyle.copyWith(
+                                        fontWeight: FontWeight.normal)),
+                                TextSpan(
+                                    text: "競賽",
+                                    style: topBarTextStyle.copyWith(
+                                        fontWeight: FontWeight.bold))
+                              ]))),
+                        ]))),
+              ]),
             ],
           ),
         )),
@@ -158,7 +162,4 @@ class _AboutScreenState extends State<AboutScreen>
               )
             ])));
   }
-
-  final topBarTextStyle =
-      const TextStyle(fontSize: 25, letterSpacing: 5, color: Colors.white);
 }
