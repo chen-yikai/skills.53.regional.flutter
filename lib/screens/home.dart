@@ -20,7 +20,9 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Padding(
               padding: const EdgeInsets.all(10),
               child: IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    widget.scaffoldKey.currentState?.openDrawer();
+                  },
                   icon: Image.asset('assets/icons/menu.png', height: 40)))),
       Padding(
         padding: const EdgeInsets.all(60),
